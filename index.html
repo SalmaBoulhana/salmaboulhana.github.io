@@ -8,9 +8,9 @@
   <style>
     :root {
       --bg:      #141414;
-      --bg2:     #1a1010;
-      --wine:    #68191E;
-      --wine2:   #7d2026;
+      --bg2:     #1c1414;
+      --berry:   #68191E;
+      --berry2:  #832838;
       --mist:    #a09090;
       --frost:   #E3E3E3;
       --snow:    #FFF4E4;
@@ -20,234 +20,158 @@
     body { background:var(--bg); color:var(--snow); font-family:'Inter',sans-serif; overflow-x:hidden; }
     ::-webkit-scrollbar { width:4px; }
     ::-webkit-scrollbar-track { background:var(--bg); }
-    ::-webkit-scrollbar-thumb { background:var(--wine); }
-
-    /* ─── NAV ─── */
-    nav {
-      position:fixed; top:0; width:100%;
-      padding:1.2rem 3rem;
-      display:flex; justify-content:space-between; align-items:center;
-      z-index:500;
-      background:rgba(20,20,20,0.93);
-      backdrop-filter:blur(20px);
-      border-bottom:1px solid rgba(104,25,30,0.25);
-    }
-    .nav-logo { display:flex; align-items:center; text-decoration:none; }
+    ::-webkit-scrollbar-thumb { background:var(--berry); }
+    nav { position:fixed; top:0; width:100%; padding:1.2rem 3rem; display:flex; justify-content:space-between; align-items:center; z-index:500; background:rgba(20,20,20,0.92); backdrop-filter:blur(16px); border-bottom:1px solid rgba(104,25,30,0.25); }
+    .nav-logo { text-decoration:none; display:flex; align-items:center; }
     .nav-logo img { height:32px; width:auto; object-fit:contain; }
     .nav-logo-fb { font-family:'Syne',sans-serif; font-size:1.4rem; font-weight:800; color:var(--snow); }
-    .nav-logo-fb span { color:var(--wine); }
+    .nav-logo-fb span { color:var(--berry); }
     .nav-links { display:flex; gap:2rem; list-style:none; }
-    .nav-links a { font-family:'DM Mono',monospace; font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--mist); text-decoration:none; transition:color 0.2s; }
+    .nav-links a { font-family:'DM Mono',monospace; font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--frost); text-decoration:none; transition:color 0.2s; }
     .nav-links a:hover { color:var(--snow); }
     .lang-toggle { display:flex; gap:0.3rem; }
-    .lang-btn { font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.1em; padding:0.3rem 0.7rem; border:1px solid rgba(104,25,30,0.4); background:transparent; color:var(--mist); cursor:pointer; transition:all 0.2s; border-radius:2px; }
-    .lang-btn.active { background:var(--wine); color:var(--snow); border-color:var(--wine); }
-    .lang-btn:hover:not(.active) { color:var(--snow); border-color:var(--mist); }
-
-    /* ─── HERO ─── */
-    #home {
-      min-height:100vh;
-      display:flex; flex-direction:column;
-      justify-content:center; align-items:center;
-      text-align:center; padding:8rem 2rem 5rem;
-      position:relative; overflow:hidden;
-    }
+    .lang-btn { font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.1em; padding:0.3rem 0.7rem; border:1px solid rgba(104,25,30,0.4); background:transparent; color:var(--frost); cursor:pointer; transition:all 0.2s; border-radius:2px; }
+    .lang-btn.active { background:var(--berry); color:var(--snow); border-color:var(--berry); }
+    .lang-btn:hover:not(.active) { color:var(--snow); }
+    #home { min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:8rem 2rem 5rem; position:relative; overflow:hidden; }
     #particles-canvas { position:absolute; inset:0; z-index:0; }
     .hero-content { position:relative; z-index:2; max-width:860px; }
-    .hero-tag {
-      font-family:'DM Mono',monospace; font-size:0.75rem;
-      letter-spacing:0.25em; text-transform:uppercase;
-      color:var(--mist); margin-bottom:2rem;
-      display:flex; align-items:center; justify-content:center; gap:1rem;
-      opacity:0; animation:fadeUp 0.7s 0.2s forwards;
-    }
-    .hero-tag::before, .hero-tag::after { content:''; width:35px; height:1px; background:var(--wine); }
-    .hero-greeting {
-      font-family:'Syne',sans-serif; font-size:clamp(1.8rem,3vw,2.6rem);
-      font-weight:400; color:var(--mist); line-height:1.2;
-      opacity:0; animation:fadeUp 0.8s 0.4s forwards;
-    }
-    .hero-name {
-      font-family:'Syne',sans-serif; font-size:clamp(3.5rem,6vw,6.5rem);
-      font-weight:800; color:var(--snow); line-height:1; margin:0.2rem 0 1.2rem;
-      opacity:0; animation:fadeUp 0.8s 0.55s forwards;
-    }
-    .hero-name .accent { color:var(--wine); }
-    .hero-role {
-      font-family:'Syne',sans-serif; font-size:clamp(1.1rem,2vw,1.6rem);
-      font-weight:600; color:var(--snow); margin-bottom:0.8rem; min-height:2.2rem;
-      opacity:0; animation:fadeUp 0.8s 0.7s forwards;
-    }
-    .blink { color:var(--wine); animation:blink 0.8s infinite; font-weight:300; }
+    .hero-tag { font-family:'DM Mono',monospace; font-size:0.75rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--mist); margin-bottom:2rem; display:flex; align-items:center; justify-content:center; gap:1rem; opacity:0; animation:fadeUp 0.7s 0.2s forwards; }
+    .hero-tag::before, .hero-tag::after { content:''; width:35px; height:1px; background:var(--berry); }
+    .hero-greeting { font-family:'Syne',sans-serif; font-size:clamp(1.8rem,3vw,2.6rem); font-weight:400; color:var(--frost); line-height:1.2; opacity:0; animation:fadeUp 0.8s 0.4s forwards; }
+    .hero-name { font-family:'Syne',sans-serif; font-size:clamp(3.5rem,6vw,6.5rem); font-weight:800; color:var(--snow); line-height:1; margin:0.2rem 0 1.2rem; opacity:0; animation:fadeUp 0.8s 0.55s forwards; }
+    .hero-name .accent { color:var(--berry); }
+    .hero-role { font-family:'Syne',sans-serif; font-size:clamp(1.1rem,2vw,1.6rem); font-weight:600; color:var(--snow); margin-bottom:0.8rem; min-height:2rem; opacity:0; animation:fadeUp 0.8s 0.7s forwards; }
+    .blink { color:var(--berry); animation:blink 0.8s infinite; font-weight:300; }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-    .hero-school {
-      display:block; font-family:'DM Mono',monospace; font-size:0.8rem;
-      letter-spacing:0.1em; color:var(--mist); margin-bottom:2.5rem;
-      opacity:0; animation:fadeUp 0.8s 0.85s forwards;
-    }
-    .hero-cta {
-      display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;
-      opacity:0; animation:fadeUp 0.8s 1s forwards;
-    }
-    .btn-primary { background:var(--wine); color:var(--snow); padding:0.85rem 2.4rem; font-family:'DM Mono',monospace; font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none; border:1px solid var(--wine); transition:all 0.2s; display:inline-block; }
-    .btn-primary:hover { background:var(--wine2); transform:translateY(-2px); }
-    .btn-ghost { background:transparent; color:var(--snow); padding:0.85rem 2.4rem; font-family:'DM Mono',monospace; font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none; border:1px solid rgba(255,244,228,0.2); transition:all 0.2s; display:inline-block; }
+    .hero-school { display:block; font-family:'DM Mono',monospace; font-size:0.8rem; letter-spacing:0.1em; color:var(--mist); margin-bottom:2.5rem; opacity:0; animation:fadeUp 0.8s 0.85s forwards; }
+    .hero-cta { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; opacity:0; animation:fadeUp 0.8s 1s forwards; }
+    .btn-primary { background:var(--berry); color:var(--snow); padding:0.85rem 2.4rem; font-family:'DM Mono',monospace; font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none; border:1px solid var(--berry); transition:all 0.2s; display:inline-block; }
+    .btn-primary:hover { background:var(--berry2); transform:translateY(-2px); }
+    .btn-ghost { background:transparent; color:var(--snow); padding:0.85rem 2.4rem; font-family:'DM Mono',monospace; font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none; border:1px solid rgba(220,224,232,0.2); transition:all 0.2s; display:inline-block; }
     .btn-ghost:hover { border-color:var(--frost); transform:translateY(-2px); }
-    .hero-stats {
-      display:flex; gap:4rem; justify-content:center;
-      margin-top:4rem; position:relative; z-index:2;
-      opacity:0; animation:fadeIn 1s 1.3s forwards;
-    }
+    .hero-stats { display:flex; gap:4rem; justify-content:center; margin-top:4rem; position:relative; z-index:2; opacity:0; animation:fadeIn 1s 1.3s forwards; }
     .stat-num { font-family:'Syne',sans-serif; font-size:2.5rem; font-weight:800; color:var(--snow); text-align:center; line-height:1; }
-    .stat-num span { color:var(--wine); }
-    .stat-lbl { font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--mist); margin-top:0.3rem; text-align:center; }
+    .stat-num span { color:var(--berry); }
+    .stat-lbl { font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--frost); margin-top:0.3rem; text-align:center; }
     .scroll-hint { position:absolute; bottom:2.5rem; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:0.5rem; opacity:0; animation:fadeIn 1s 1.6s forwards; z-index:2; }
-    .scroll-hint span { font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--mist); }
-    .scroll-bar { width:1px; height:40px; background:linear-gradient(to bottom, var(--wine), transparent); }
-
-    /* ─── SECTION BASE ─── */
+    .scroll-hint span { font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--frost); }
+    .scroll-bar { width:1px; height:40px; background:linear-gradient(to bottom, var(--berry), transparent); }
     section { padding:6rem 3rem; }
     .sec-inner { max-width:1100px; margin:0 auto; }
-    .sec-tag { font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.25em; text-transform:uppercase; color:#a09090; margin-bottom:0.5rem; }
+    .sec-tag { font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--mist); margin-bottom:0.5rem; }
     .sec-title { font-family:'Syne',sans-serif; font-size:clamp(2.2rem,4vw,3.5rem); font-weight:800; color:var(--snow); line-height:1.1; margin-bottom:1rem; }
-    .sec-title span { color:var(--wine); }
-    .sec-div { width:50px; height:2px; background:var(--wine); margin-bottom:3rem; }
-
-    /* ─── ABOUT ─── */
+    .sec-title span { color:var(--berry); }
+    .sec-div { width:50px; height:2px; background:var(--berry); margin-bottom:3rem; }
     #about { background:var(--bg2); }
     .about-bio { font-size:1rem; line-height:1.95; color:var(--mist); font-weight:300; max-width:820px; margin-bottom:3rem; }
-    .about-bio .hl { color:var(--wine); font-weight:500; }
+    .about-bio .hl { color:var(--snow); font-weight:500; }
     .about-bio p+p { margin-top:1rem; }
-    .wip-badge { display:inline-block; margin-top:1.2rem; font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.1em; padding:0.35rem 1rem; border:1px solid var(--wine); color:var(--wine); }
-
-    /* Timeline */
-    .tl-title { font-family:'Syne',sans-serif; font-size:1.1rem; font-weight:700; color:#a09090; margin-bottom:2rem; }
+    .wip-badge { display:inline-block; margin-top:1.2rem; font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.1em; padding:0.35rem 1rem; border:1px solid var(--berry); color:var(--mist); }
+    .tl-title { font-family:'Syne',sans-serif; font-size:1.1rem; font-weight:700; color:var(--snow); margin-bottom:2rem; }
     .timeline { display:flex; align-items:flex-start; position:relative; }
-    .timeline::before { content:''; position:absolute; top:18px; left:18px; right:18px; height:1px; background:linear-gradient(to right, var(--wine), rgba(104,25,30,0.2)); }
-    .tl-item { flex:1; position:relative; }
-    .tl-dot { width:36px; height:36px; border-radius:50%; background:var(--bg2); border:2px solid var(--wine); display:flex; align-items:center; justify-content:center; margin-bottom:1rem; position:relative; z-index:1; font-size:0.9rem; }
-    .tl-year { font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.1em; color:#a09090; margin-bottom:0.3rem; }
+    .timeline::before { content:''; position:absolute; top:18px; left:18px; right:18px; height:1px; background:linear-gradient(to right, var(--berry), rgba(104,25,30,0.2)); }
+    .tl-item { flex:1; position:relative; padding-right:1rem; }
+    .tl-dot { width:36px; height:36px; border-radius:50%; background:var(--bg2); border:2px solid var(--berry); display:flex; align-items:center; justify-content:center; margin-bottom:1rem; position:relative; z-index:1; font-size:0.9rem; }
+    .tl-year { font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.1em; color:var(--mist); margin-bottom:0.3rem; }
     .tl-place { font-family:'Syne',sans-serif; font-size:0.9rem; font-weight:700; color:var(--snow); margin-bottom:0.2rem; }
     .tl-role { font-size:0.78rem; color:var(--mist); font-weight:300; }
-    .tl-sub { font-family:'DM Mono',monospace; font-size:0.6rem; color:#a09090; margin-top:0.3rem; letter-spacing:0.08em; }
-
-    /* ─── SKILLS ─── */
+    .tl-sub { font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--mist); margin-top:0.3rem; letter-spacing:0.08em; }
     #skills { background:var(--bg); }
     .skills-intro { font-size:0.95rem; line-height:1.8; color:var(--mist); font-weight:300; max-width:600px; margin-bottom:3rem; }
     .skills-groups { display:grid; grid-template-columns:1fr 1fr; gap:3rem; }
-    .sg-title { font-family:'Syne',sans-serif; font-size:1.1rem; font-weight:700; color:var(--snow); margin-bottom:0.3rem; }
-    .sg-sub { font-size:0.8rem; color:var(--mist); font-weight:300; margin-bottom:1.2rem; }
+    .sg-title { font-family:'Syne',sans-serif; font-size:1.05rem; font-weight:700; color:var(--snow); margin-bottom:0.3rem; }
+    .sg-sub { font-size:0.78rem; color:var(--mist); margin-bottom:1.2rem; }
     .skill-items { display:grid; grid-template-columns:1fr 1fr; gap:0.7rem; }
-    .skill-item { background:var(--bg2); border:1px solid rgba(104,25,30,0.3); padding:0.9rem 1rem; display:flex; align-items:center; gap:0.7rem; transition:border-color 0.2s,transform 0.2s; }
-    .skill-item:hover { border-color:var(--wine); transform:translateY(-2px); }
+    .skill-item { background:var(--bg2); border:1px solid rgba(104,25,30,0.3); padding:0.9rem 1rem; display:flex; align-items:center; gap:0.7rem; transition:all 0.2s; }
+    .skill-item:hover { border-color:var(--berry); transform:translateY(-2px); }
     .si-icon { font-size:1.1rem; }
-    .si-name { font-family:'DM Mono',monospace; font-size:0.72rem; letter-spacing:0.06em; color:var(--snow); }
-
-    /* ─── PROJECTS ─── */
+    .si-name { font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--snow); }
     #projects { background:var(--bg2); }
     .projects-list { display:flex; flex-direction:column; gap:4rem; }
     .proj-card { display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center; }
     .proj-card.rev { direction:rtl; }
-    .proj-card.rev>* { direction:ltr; }
-    .proj-img { background:var(--bg); border:1px solid rgba(104,25,30,0.3); aspect-ratio:16/9; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; transition:border-color 0.3s; }
-    .proj-img:hover { border-color:var(--wine); }
-    .proj-ph { width:100%; height:100%; background:linear-gradient(135deg,#1a0808 0%,#2a1010 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.5rem; }
+    .proj-card.rev > * { direction:ltr; }
+    .proj-img { background:var(--bg); border:1px solid rgba(104,25,30,0.3); aspect-ratio:16/9; display:flex; align-items:center; justify-content:center; overflow:hidden; transition:border-color 0.3s; }
+    .proj-img:hover { border-color:var(--berry); }
+    .proj-ph { width:100%; height:100%; background:linear-gradient(135deg,#1a0808,#2a1010); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.5rem; }
     .proj-ph .pico { font-size:2.5rem; opacity:0.35; }
-    .proj-ph span { font-family:'DM Mono',monospace; font-size:0.62rem; color:var(--mist); letter-spacing:0.1em; opacity:0.5; }
-    .proj-type { font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.18em; text-transform:uppercase; color:#a09090; margin-bottom:0.7rem; }
+    .proj-ph span { font-family:'DM Mono',monospace; font-size:0.62rem; color:var(--mist); opacity:0.5; }
+    .proj-type { font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--mist); margin-bottom:0.7rem; }
     .proj-title { font-family:'Syne',sans-serif; font-size:1.4rem; font-weight:700; color:var(--snow); margin-bottom:1rem; line-height:1.2; }
-    .proj-desc { font-size:0.88rem; line-height:1.85; color:var(--mist); font-weight:300; margin-bottom:1.5rem; }
+    .proj-desc { font-size:0.88rem; line-height:1.85; color:var(--mist); margin-bottom:1.5rem; }
     .proj-tags { display:flex; flex-wrap:wrap; gap:0.4rem; margin-bottom:1.5rem; }
-    .ptag { font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.07em; padding:0.22rem 0.65rem; background:rgba(104,25,30,0.25); color:var(--mist); border:1px solid rgba(104,25,30,0.4); }
+    .ptag { font-family:'DM Mono',monospace; font-size:0.6rem; padding:0.22rem 0.65rem; background:rgba(104,25,30,0.2); color:var(--mist); border:1px solid rgba(104,25,30,0.4); }
     .proj-links { display:flex; gap:0.8rem; }
-    .plink { display:flex; align-items:center; gap:0.4rem; font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; padding:0.5rem 1.1rem; transition:all 0.2s; }
-    .plink.gh { border:1px solid rgba(255,244,228,0.2); color:var(--mist); }
-    .plink.gh:hover { border-color:var(--snow); color:var(--snow); }
-    .wip-tag { display:inline-block; font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.1em; text-transform:uppercase; padding:0.3rem 0.9rem; border:1px solid var(--wine); color:var(--wine); }
-
-    /* ─── RESUME ─── */
+    .plink { font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; padding:0.5rem 1.1rem; border:1px solid rgba(255,244,228,0.2); color:var(--mist); transition:all 0.2s; }
+    .plink:hover { border-color:var(--snow); color:var(--snow); }
+    .wip-tag { display:inline-block; font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.1em; text-transform:uppercase; padding:0.3rem 0.9rem; border:1px solid var(--berry); color:var(--mist); }
     #resume { background:var(--bg); }
     .resume-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; }
-    .rc-title { font-family:'DM Mono',monospace; font-size:0.68rem; letter-spacing:0.2em; text-transform:uppercase; color:#a09090; margin-bottom:1.5rem; padding-bottom:0.5rem; border-bottom:1px solid rgba(224,85,96,0.3); }
-    .ri { margin-bottom:2rem; padding-left:1rem; border-left:2px solid rgba(104,25,30,0.4); transition:border-left-color 0.2s; }
-    .ri:hover { border-left-color:var(--wine); }
+    .rc-title { font-family:'DM Mono',monospace; font-size:0.68rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--mist); margin-bottom:1.5rem; padding-bottom:0.5rem; border-bottom:1px solid rgba(104,25,30,0.3); }
+    .ri { margin-bottom:2rem; padding-left:1rem; border-left:2px solid rgba(104,25,30,0.35); transition:border-left-color 0.2s; }
+    .ri:hover { border-left-color:var(--berry); }
     .ri-title { font-family:'Syne',sans-serif; font-size:1rem; font-weight:700; color:var(--snow); margin-bottom:0.3rem; }
-    .ri-meta { font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.1em; color:#a09090; margin-bottom:0.5rem; }
-    .ri-desc { font-size:0.85rem; line-height:1.75; color:var(--mist); font-weight:300; }
+    .ri-meta { font-family:'DM Mono',monospace; font-size:0.62rem; color:var(--mist); margin-bottom:0.5rem; }
+    .ri-desc { font-size:0.85rem; line-height:1.75; color:var(--mist); }
     .resume-dl { margin-top:3.5rem; text-align:center; padding-top:2.5rem; border-top:1px solid rgba(104,25,30,0.2); }
-    .btn-dl { display:inline-flex; align-items:center; gap:0.6rem; border:1px solid var(--wine); color:var(--wine); padding:0.9rem 2.5rem; font-family:'DM Mono',monospace; font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none; transition:all 0.25s; background:transparent; }
-    .btn-dl:hover { background:var(--wine); color:var(--snow); }
-    .dl-note { font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--mist); opacity:0.4; margin-top:0.8rem; letter-spacing:0.08em; }
-
-    /* ─── BLOG ─── */
+    .btn-dl { display:inline-flex; align-items:center; gap:0.6rem; border:1px solid var(--berry); color:var(--mist); padding:0.9rem 2.5rem; font-family:'DM Mono',monospace; font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none; transition:all 0.25s; }
+    .btn-dl:hover { background:var(--berry); color:var(--snow); }
+    .dl-note { font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--mist); opacity:0.4; margin-top:0.8rem; }
     #blog { background:var(--bg2); }
     .blog-ph { border:1px dashed rgba(104,25,30,0.4); padding:5rem 2rem; text-align:center; }
     .blog-icon { font-size:2.5rem; margin-bottom:1rem; opacity:0.4; }
     .blog-coming { font-family:'Syne',sans-serif; font-size:1.5rem; font-weight:700; color:var(--snow); margin-bottom:0.8rem; }
-    .blog-ph p { font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--mist); letter-spacing:0.08em; line-height:1.8; }
-
-    /* ─── CONTACT ─── */
+    .blog-ph p { font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--mist); line-height:1.8; }
     #contact { background:var(--bg); }
     .contact-grid { display:grid; grid-template-columns:1fr 1.2fr; gap:5rem; }
-    .contact-desc { font-size:0.95rem; line-height:1.85; color:var(--mist); font-weight:300; margin-bottom:2rem; }
+    .contact-desc { font-size:0.95rem; line-height:1.85; color:var(--mist); margin-bottom:2rem; }
     .slinks { display:flex; flex-direction:column; gap:0.8rem; }
-    .slink { display:flex; align-items:center; gap:0.9rem; text-decoration:none; color:var(--mist); font-family:'DM Mono',monospace; font-size:0.72rem; letter-spacing:0.08em; padding:0.85rem 1rem; border:1px solid rgba(104,25,30,0.3); transition:all 0.2s; }
-    .slink:hover { background:var(--wine); color:var(--snow); border-color:var(--wine); transform:translateX(4px); }
+    .slink { display:flex; align-items:center; gap:0.9rem; text-decoration:none; color:var(--mist); font-family:'DM Mono',monospace; font-size:0.72rem; padding:0.85rem 1rem; border:1px solid rgba(104,25,30,0.3); transition:all 0.2s; }
+    .slink:hover { background:var(--berry); color:var(--snow); border-color:var(--berry); transform:translateX(4px); }
     .cform { display:flex; flex-direction:column; gap:1rem; }
     .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
     .fg { display:flex; flex-direction:column; gap:0.4rem; }
     .fg label { font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--mist); }
-    .fg input,.fg textarea { background:var(--bg2); border:1px solid rgba(104,25,30,0.3); padding:0.85rem 1rem; font-family:'Inter',sans-serif; font-size:0.88rem; color:var(--snow); outline:none; transition:border-color 0.2s; resize:none; }
-    .fg input:focus,.fg textarea:focus { border-color:var(--wine); }
-    .fg input::placeholder,.fg textarea::placeholder { color:rgba(255,244,228,0.2); }
-    .form-note { font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--mist); opacity:0.5; letter-spacing:0.05em; }
-    .btn-send { background:var(--wine); color:var(--snow); border:none; padding:0.9rem 2.5rem; font-family:'DM Mono',monospace; font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; align-self:flex-start; transition:all 0.2s; }
-    .btn-send:hover { background:var(--wine2); transform:translateY(-2px); }
-    #form-ok { display:none; font-family:'DM Mono',monospace; font-size:0.7rem; color:var(--wine); letter-spacing:0.08em; margin-top:0.5rem; }
-
-    /* ─── FOOTER ─── */
+    .fg input, .fg textarea { background:var(--bg2); border:1px solid rgba(104,25,30,0.3); padding:0.85rem 1rem; font-family:'Inter',sans-serif; font-size:0.88rem; color:var(--snow); outline:none; transition:border-color 0.2s; resize:none; }
+    .fg input:focus, .fg textarea:focus { border-color:var(--berry); }
+    .fg input::placeholder, .fg textarea::placeholder { color:rgba(255,244,228,0.2); }
+    .form-note { font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--mist); opacity:0.5; }
+    .btn-send { background:var(--berry); color:var(--snow); border:none; padding:0.9rem 2.5rem; font-family:'DM Mono',monospace; font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; align-self:flex-start; transition:all 0.2s; }
+    .btn-send:hover { background:var(--berry2); transform:translateY(-2px); }
+    #form-ok { display:none; font-family:'DM Mono',monospace; font-size:0.7rem; color:var(--berry); margin-top:0.5rem; }
     footer { background:var(--bg2); padding:2rem 3rem; display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(104,25,30,0.2); }
-    .footer-copy { font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.1em; color:var(--mist); opacity:0.5; }
-    .footer-logo img { height:26px; }
+    .footer-copy { font-family:'DM Mono',monospace; font-size:0.62rem; color:var(--mist); opacity:0.5; }
     .footer-logo-fb { font-family:'Syne',sans-serif; font-size:1.1rem; font-weight:800; color:var(--snow); }
-    .footer-logo-fb span { color:var(--wine); }
-
-    /* ─── ANIMATIONS ─── */
+    .footer-logo-fb span { color:var(--berry); }
     @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
     @keyframes fadeIn { from{opacity:0} to{opacity:1} }
     .reveal { opacity:0; transform:translateY(24px); transition:opacity 0.7s ease,transform 0.7s ease; }
     .reveal.visible { opacity:1; transform:translateY(0); }
-
-    /* ─── RESPONSIVE ─── */
     @media(max-width:900px){
-      nav { padding:1rem 1.5rem; }
-      .nav-links { display:none; }
+      nav { padding:1rem 1.5rem; } .nav-links { display:none; }
       section { padding:4rem 1.5rem; }
       .skills-groups,.resume-grid,.contact-grid { grid-template-columns:1fr; gap:2rem; }
       .proj-card,.proj-card.rev { grid-template-columns:1fr; direction:ltr; }
-      .timeline { flex-direction:column; gap:1.5rem; }
-      .timeline::before { display:none; }
-      footer { flex-direction:column; gap:1rem; text-align:center; padding:1.5rem; }
-      .hero-stats { gap:2rem; }
+      .timeline { flex-direction:column; gap:1.5rem; } .timeline::before { display:none; }
+      footer { flex-direction:column; gap:1rem; text-align:center; } .hero-stats { gap:2rem; }
       .form-row { grid-template-columns:1fr; }
     }
   </style>
 </head>
 <body>
-
-  <!-- NAV -->
   <nav>
     <a href="#home" class="nav-logo">
       <img src="logo.png" alt="SB" onerror="this.style.display='none';document.getElementById('logoFb').style.display='block'"/>
       <span id="logoFb" class="nav-logo-fb" style="display:none">SB<span>.</span></span>
     </a>
     <ul class="nav-links">
-      <li><a href="#about" data-en="About" data-fr="À Propos">About</a></li>
-      <li><a href="#skills" data-en="Skills" data-fr="Compétences">Skills</a></li>
+      <li><a href="#about"    data-en="About"    data-fr="À Propos">About</a></li>
+      <li><a href="#skills"   data-en="Skills"   data-fr="Compétences">Skills</a></li>
       <li><a href="#projects" data-en="Projects" data-fr="Projets">Projects</a></li>
-      <li><a href="#resume" data-en="Resume" data-fr="CV">Resume</a></li>
-      <li><a href="#blog" data-en="Blog" data-fr="Blog">Blog</a></li>
-      <li><a href="#contact" data-en="Contact" data-fr="Contact">Contact</a></li>
+      <li><a href="#resume"   data-en="Resume"   data-fr="CV">Resume</a></li>
+      <li><a href="#blog"     data-en="Blog"     data-fr="Blog">Blog</a></li>
+      <li><a href="#contact"  data-en="Contact"  data-fr="Contact">Contact</a></li>
     </ul>
     <div class="lang-toggle">
       <button class="lang-btn active" onclick="setLang('en')">EN</button>
@@ -255,7 +179,6 @@
     </div>
   </nav>
 
-  <!-- HERO -->
   <section id="home">
     <canvas id="particles-canvas"></canvas>
     <div class="hero-content">
@@ -274,13 +197,9 @@
       <div><p class="stat-num">1<span>+</span></p><p class="stat-lbl" data-en="Internship" data-fr="Stage">Internship</p></div>
       <div><p class="stat-num">2<span>+</span></p><p class="stat-lbl" data-en="Years Study" data-fr="Ans d'Études">Years Study</p></div>
     </div>
-    <div class="scroll-hint">
-      <div class="scroll-bar"></div>
-      <span data-en="Scroll" data-fr="Défiler">Scroll</span>
-    </div>
+    <div class="scroll-hint"><div class="scroll-bar"></div><span data-en="Scroll" data-fr="Défiler">Scroll</span></div>
   </section>
 
-  <!-- ABOUT -->
   <section id="about">
     <div class="sec-inner">
       <div class="reveal">
@@ -289,9 +208,9 @@
         <div class="sec-div"></div>
       </div>
       <div class="about-bio reveal">
-        <p data-en="I'm <span class='hl'>Salma Boulhana</span>, a cybersecurity engineering student at <span class='hl'>ENSIAS, Mohammed V University</span> in Rabat. I'm particularly interested in security operations and threat detection. Through my academic projects, I've built hands-on experience in log analysis, threat intelligence, and Python scripting applied to security." data-fr="Je suis <span class='hl'>Salma Boulhana</span>, étudiante ingénieure en cybersécurité à l'<span class='hl'>ENSIAS, Université Mohammed V</span> de Rabat. Je m'intéresse particulièrement aux opérations de sécurité et à la détection des menaces. J'ai acquis des compétences pratiques en analyse de logs, threat intelligence et scripting Python appliqué à la sécurité.">I'm <span class="hl">Salma Boulhana</span>, a cybersecurity engineering student at <span class="hl">ENSIAS, Mohammed V University</span> in Rabat. I'm particularly interested in security operations and threat detection. Through my academic projects, I've built hands-on experience in log analysis, threat intelligence, and Python scripting applied to security.</p>
+        <p data-en="I'm <span class='hl'>Salma Boulhana</span>, a cybersecurity engineering student at <span class='hl'>ENSIAS, Mohammed V University</span> in Rabat. I'm particularly interested in security operations and threat detection. Through my academic projects, I've built hands-on experience in log analysis, threat intelligence, and Python scripting applied to security." data-fr="Je suis <span class='hl'>Salma Boulhana</span>, étudiante ingénieure en cybersécurité à l'<span class='hl'>ENSIAS, Université Mohammed V</span> de Rabat. Je m'intéresse particulièrement aux opérations de sécurité et à la détection des menaces.">I'm <span class="hl">Salma Boulhana</span>, a cybersecurity engineering student at <span class="hl">ENSIAS, Mohammed V University</span> in Rabat. I'm particularly interested in security operations and threat detection. Through my academic projects, I've built hands-on experience in log analysis, threat intelligence, and Python scripting applied to security.</p>
         <br/>
-        <p data-en="These experiences helped me develop a concrete approach to identifying and analyzing malicious activity, and an understanding of detection and investigation mechanisms in SOC environments." data-fr="Ces expériences m'ont permis de développer une approche concrète de l'identification des activités malveillantes et une compréhension des mécanismes de détection et d'investigation en environnement SOC.">These experiences helped me develop a concrete approach to identifying and analyzing malicious activity, and an understanding of detection and investigation mechanisms in SOC environments.</p>
+        <p data-en="These experiences helped me develop a concrete approach to identifying and analyzing malicious activity, and an understanding of detection and investigation mechanisms in SOC environments." data-fr="Ces expériences m'ont permis de développer une approche concrète de l'identification des activités malveillantes et une compréhension des mécanismes de détection en environnement SOC.">These experiences helped me develop a concrete approach to identifying and analyzing malicious activity, and an understanding of detection and investigation mechanisms in SOC environments.</p>
         <div class="wip-badge" data-en="⚙ Currently: Smart SIEM — Final Year Project (PFA)" data-fr="⚙ En cours : Smart SIEM — Projet de Fin d'Année (PFA)">⚙ Currently: Smart SIEM — Final Year Project (PFA)</div>
       </div>
       <div class="reveal">
@@ -301,7 +220,7 @@
             <div class="tl-dot">🎓</div>
             <p class="tl-year" data-en="Until 2024" data-fr="Jusqu'en 2024">Until 2024</p>
             <p class="tl-place" data-en="Classe Préparatoire" data-fr="Classe Préparatoire">Classe Préparatoire</p>
-            <p class="tl-role" data-en="CPGE — Maths & Physics" data-fr="CPGE — Maths & Physique">CPGE — Maths &amp; Physics</p>
+            <p class="tl-role" data-en="CPGE — Maths & Physics" data-fr="CPGE — Maths & Physique">CPGE — Maths & Physics</p>
           </div>
           <div class="tl-item">
             <div class="tl-dot">🎓</div>
@@ -321,19 +240,18 @@
     </div>
   </section>
 
-  <!-- SKILLS -->
   <section id="skills">
     <div class="sec-inner">
       <div class="reveal">
         <p class="sec-tag" data-en="What I Know" data-fr="Ce Que Je Sais">What I Know</p>
-        <h2 class="sec-title" data-en="Tools & <span>Skills</span>" data-fr="Outils & <span>Compétences</span>">Tools &amp; <span>Skills</span></h2>
+        <h2 class="sec-title" data-en="Tools &amp; <span>Skills</span>" data-fr="Outils &amp; <span>Compétences</span>">Tools &amp; <span>Skills</span></h2>
         <div class="sec-div"></div>
-        <p class="skills-intro" data-en="My expertise combines technical proficiency with hands-on security skills, enabling me to detect, analyze, and respond to cyber threats effectively." data-fr="Mon expertise combine des compétences techniques et pratiques en sécurité, me permettant de détecter, analyser et répondre efficacement aux cybermenaces.">My expertise combines technical proficiency with hands-on security skills, enabling me to detect, analyze, and respond to cyber threats effectively.</p>
+        <p class="skills-intro" data-en="My expertise combines technical proficiency with hands-on security skills, enabling me to detect, analyze, and respond to cyber threats effectively." data-fr="Mon expertise combine des compétences techniques et pratiques en sécurité, me permettant de détecter, analyser et répondre efficacement aux cybermenaces.">My expertise combines technical proficiency with hands-on security skills.</p>
       </div>
       <div class="skills-groups reveal">
         <div>
-          <p class="sg-title" data-en="Threat Detection & Analysis" data-fr="Détection & Analyse des Menaces">Threat Detection & Analysis</p>
-          <p class="sg-sub" data-en="Core security operations skills" data-fr="Compétences fondamentales en sécurité">Core security operations skills</p>
+          <p class="sg-title" data-en="Threat Detection &amp; Analysis" data-fr="Détection &amp; Analyse">Threat Detection &amp; Analysis</p>
+          <p class="sg-sub" data-en="Core security operations skills" data-fr="Compétences fondamentales SOC">Core security operations skills</p>
           <div class="skill-items">
             <div class="skill-item"><span class="si-icon">🔍</span><span class="si-name">SIEM</span></div>
             <div class="skill-item"><span class="si-icon">📋</span><span class="si-name">Log Analysis</span></div>
@@ -343,7 +261,7 @@
         </div>
         <div>
           <p class="sg-title" data-en="Security Tools" data-fr="Outils de Sécurité">Security Tools</p>
-          <p class="sg-sub" data-en="Tools for testing and monitoring" data-fr="Outils pour les tests et la surveillance">Tools for testing and monitoring</p>
+          <p class="sg-sub" data-en="Tools for testing and monitoring" data-fr="Outils pour tests et surveillance">Tools for testing and monitoring</p>
           <div class="skill-items">
             <div class="skill-item"><span class="si-icon">🦈</span><span class="si-name">Wireshark</span></div>
             <div class="skill-item"><span class="si-icon">🔭</span><span class="si-name">OpenVAS</span></div>
@@ -352,8 +270,8 @@
           </div>
         </div>
         <div>
-          <p class="sg-title" data-en="Scripting & Development" data-fr="Scripting & Développement">Scripting & Development</p>
-          <p class="sg-sub" data-en="Programming for security automation" data-fr="Programmation pour l'automatisation sécurité">Programming for security automation</p>
+          <p class="sg-title" data-en="Scripting &amp; Development" data-fr="Scripting &amp; Dev">Scripting &amp; Development</p>
+          <p class="sg-sub" data-en="Programming for security automation" data-fr="Programmation pour l'automatisation">Programming for security automation</p>
           <div class="skill-items">
             <div class="skill-item"><span class="si-icon">🐍</span><span class="si-name">Python</span></div>
             <div class="skill-item"><span class="si-icon">🔗</span><span class="si-name">REST APIs</span></div>
@@ -362,7 +280,7 @@
           </div>
         </div>
         <div>
-          <p class="sg-title" data-en="Cryptography & Network" data-fr="Cryptographie & Réseau">Cryptography & Network</p>
+          <p class="sg-title" data-en="Cryptography &amp; Network" data-fr="Cryptographie &amp; Réseau">Cryptography &amp; Network</p>
           <p class="sg-sub" data-en="Encryption and network security" data-fr="Chiffrement et sécurité réseau">Encryption and network security</p>
           <div class="skill-items">
             <div class="skill-item"><span class="si-icon">🔐</span><span class="si-name">JWT Security</span></div>
@@ -375,7 +293,6 @@
     </div>
   </section>
 
-  <!-- PROJECTS -->
   <section id="projects">
     <div class="sec-inner">
       <div class="reveal">
@@ -384,93 +301,86 @@
         <div class="sec-div"></div>
       </div>
       <div class="projects-list">
-
         <div class="proj-card reveal">
-          <div class="proj-img"><div class="proj-ph"><span class="pico">🔐</span><span data-en="Add screenshot here" data-fr="Ajoutez une capture ici">Add screenshot here</span></div></div>
+          <div class="proj-img"><div class="proj-ph"><span class="pico">🔐</span><span data-en="Add screenshot" data-fr="Ajoutez une capture">Add screenshot</span></div></div>
           <div>
             <p class="proj-type" data-en="Security Research · OWASP Juice Shop" data-fr="Recherche Sécurité · OWASP Juice Shop">Security Research · OWASP Juice Shop</p>
             <h3 class="proj-title" data-en="Vulnerability Detection in OWASP Juice Shop" data-fr="Détection de Vulnérabilités — OWASP Juice Shop">Vulnerability Detection in OWASP Juice Shop</h3>
-            <p class="proj-desc" data-en="Complete security analysis of an intentionally vulnerable web app. Built a Python IP reputation tool using IPinfo.io & AbuseIPDB. Demonstrated JWT brute-force, 'none' algorithm exploit, and MD5 dictionary attacks." data-fr="Analyse de sécurité complète d'une app web vulnérable. Outil Python d'analyse IP via IPinfo.io & AbuseIPDB. Démonstration de force brute JWT, exploitation 'none' et attaques MD5.">Complete security analysis of an intentionally vulnerable web app. Built a Python IP reputation tool using IPinfo.io &amp; AbuseIPDB. Demonstrated JWT brute-force, 'none' algorithm exploit, and MD5 dictionary attacks.</p>
+            <p class="proj-desc" data-en="Complete security analysis of an intentionally vulnerable web app. Built a Python IP reputation tool using IPinfo.io & AbuseIPDB. Demonstrated JWT brute-force, 'none' algorithm exploit, and MD5 dictionary attacks." data-fr="Analyse complète d'une app web vulnérable. Outil Python d'analyse IP via IPinfo.io & AbuseIPDB. Force brute JWT, exploitation 'none' et attaques MD5.">Complete security analysis of an intentionally vulnerable web app. Built a Python IP reputation tool using IPinfo.io & AbuseIPDB. Demonstrated JWT brute-force, 'none' algorithm exploit, and MD5 dictionary attacks.</p>
             <div class="proj-tags"><span class="ptag">Python</span><span class="ptag">JWT</span><span class="ptag">REST APIs</span><span class="ptag">Threat Intel</span><span class="ptag">Cryptography</span></div>
-            <div class="proj-links"><a href="https://github.com/SalmaBoulhana" class="plink gh" target="_blank">⬡ GitHub</a></div>
+            <div class="proj-links"><a href="https://github.com/SalmaBoulhana" class="plink" target="_blank">⬡ GitHub</a></div>
           </div>
         </div>
-
         <div class="proj-card rev reveal">
-          <div class="proj-img"><div class="proj-ph"><span class="pico">🪪</span><span data-en="Add screenshot here" data-fr="Ajoutez une capture ici">Add screenshot here</span></div></div>
+          <div class="proj-img"><div class="proj-ph"><span class="pico">🪪</span><span data-en="Add screenshot" data-fr="Ajoutez une capture">Add screenshot</span></div></div>
           <div>
             <p class="proj-type" data-en="Academic Project · ENSIAS 2025/2026" data-fr="Projet Académique · ENSIAS 2025/2026">Academic Project · ENSIAS 2025/2026</p>
             <h3 class="proj-title" data-en="Badge-Based 2FA Access Control" data-fr="Contrôle d'Accès par Badge A2F">Badge-Based 2FA Access Control</h3>
-            <p class="proj-desc" data-en="Physical access control using JavaCard smart card with 2FA. PIN verification, AES-128-CBC encryption, and Challenge-Response protocol. Validated resistance against cloning, brute-force, and replay attacks." data-fr="Contrôle d'accès physique sur JavaCard avec A2F. Vérification PIN, chiffrement AES-128-CBC et protocole Challenge-Response. Résistance aux attaques validée.">Physical access control using JavaCard smart card with 2FA. PIN verification, AES-128-CBC encryption, and Challenge-Response protocol. Validated resistance against cloning, brute-force, and replay attacks.</p>
+            <p class="proj-desc" data-en="Physical access control using JavaCard smart card with 2FA. PIN verification, AES-128-CBC encryption, and Challenge-Response protocol. Validated resistance against cloning, brute-force, and replay attacks." data-fr="Contrôle d'accès physique sur JavaCard avec A2F. Vérification PIN, AES-128-CBC et Challenge-Response. Résistance aux attaques validée.">Physical access control using JavaCard smart card with 2FA. PIN verification, AES-128-CBC encryption, and Challenge-Response protocol.</p>
             <div class="proj-tags"><span class="ptag">JavaCard</span><span class="ptag">AES-128-CBC</span><span class="ptag">RSA</span><span class="ptag">2FA</span><span class="ptag">Challenge-Response</span></div>
-            <div class="proj-links"><a href="https://github.com/SalmaBoulhana" class="plink gh" target="_blank">⬡ GitHub</a></div>
+            <div class="proj-links"><a href="https://github.com/SalmaBoulhana" class="plink" target="_blank">⬡ GitHub</a></div>
           </div>
         </div>
-
         <div class="proj-card reveal">
-          <div class="proj-img"><div class="proj-ph"><span class="pico">🔭</span><span data-en="Add screenshot here" data-fr="Ajoutez une capture ici">Add screenshot here</span></div></div>
+          <div class="proj-img"><div class="proj-ph"><span class="pico">🔭</span><span data-en="Add screenshot" data-fr="Ajoutez une capture">Add screenshot</span></div></div>
           <div>
-            <p class="proj-type" data-en="First-Year Final Project · ENSIAS" data-fr="Projet de Fin de 1ère Année · ENSIAS">First-Year Final Project · ENSIAS</p>
-            <h3 class="proj-title" data-en="Vulnerability Scanner Study — OpenVAS" data-fr="Étude de Scanner de Vulnérabilités — OpenVAS">Vulnerability Scanner Study — OpenVAS</h3>
-            <p class="proj-desc" data-en="Comparative study of open source scanners (Nmap, OWASP ZAP, Nikto, OpenVAS). Deployed on Kali Linux VM with full GVM architecture. Detected a critical backdoor (vsFTPd 2.3.4) with CVSS-based reporting." data-fr="Étude comparative des scanners (Nmap, OWASP ZAP, Nikto, OpenVAS). Déploiement sur Kali Linux VM avec architecture GVM complète. Détection d'une backdoor critique (vsFTPd 2.3.4) avec rapport CVSS.">Comparative study of open source scanners (Nmap, OWASP ZAP, Nikto, OpenVAS). Deployed on Kali Linux VM with full GVM architecture. Detected a critical backdoor (vsFTPd 2.3.4) with CVSS-based reporting.</p>
+            <p class="proj-type" data-en="First-Year Project · ENSIAS" data-fr="Projet 1ère Année · ENSIAS">First-Year Project · ENSIAS</p>
+            <h3 class="proj-title" data-en="Vulnerability Scanner Study — OpenVAS" data-fr="Étude Scanner — OpenVAS">Vulnerability Scanner Study — OpenVAS</h3>
+            <p class="proj-desc" data-en="Comparative study of open source scanners (Nmap, OWASP ZAP, Nikto, OpenVAS). Deployed on Kali Linux VM with full GVM architecture. Detected critical backdoor vsFTPd 2.3.4 with CVSS-based reporting." data-fr="Étude comparative des scanners open source. Déploiement sur Kali Linux VM avec architecture GVM. Détection d'une backdoor critique (vsFTPd 2.3.4) avec rapport CVSS.">Comparative study of open source scanners (Nmap, OWASP ZAP, Nikto, OpenVAS). Deployed on Kali Linux VM. Detected critical backdoor vsFTPd 2.3.4 with CVSS-based reporting.</p>
             <div class="proj-tags"><span class="ptag">OpenVAS</span><span class="ptag">Kali Linux</span><span class="ptag">Metasploitable2</span><span class="ptag">CVSS</span><span class="ptag">Nmap</span></div>
-            <div class="proj-links"><a href="https://github.com/SalmaBoulhana" class="plink gh" target="_blank">⬡ GitHub</a></div>
+            <div class="proj-links"><a href="https://github.com/SalmaBoulhana" class="plink" target="_blank">⬡ GitHub</a></div>
           </div>
         </div>
-
         <div class="proj-card rev reveal">
-          <div class="proj-img"><div class="proj-ph"><span class="pico">📡</span><span data-en="Add screenshot here" data-fr="Ajoutez une capture ici">Add screenshot here</span></div></div>
+          <div class="proj-img"><div class="proj-ph"><span class="pico">📡</span><span data-en="Add screenshot" data-fr="Ajoutez une capture">Add screenshot</span></div></div>
           <div>
             <p class="proj-type" data-en="Internship · Architeo, Rabat · 2024" data-fr="Stage · Architeo, Rabat · 2024">Internship · Architeo, Rabat · 2024</p>
-            <h3 class="proj-title" data-en="Wi-Fi Auto-Connection & Network Access Control" data-fr="Autoconnexion Wi-Fi & Contrôle d'Accès Réseau">Wi-Fi Auto-Connection &amp; Network Access Control</h3>
-            <p class="proj-desc" data-en="Captive portal with MAC-based access control for a coworking space. Node.js backend with SQLite for member and session management. Admin dashboard for activation codes and network monitoring." data-fr="Portail captif avec contrôle d'accès MAC pour un espace de coworking. Backend Node.js avec SQLite pour la gestion des membres et sessions. Tableau de bord admin pour les codes d'activation et le suivi réseau.">Captive portal with MAC-based access control for a coworking space. Node.js backend with SQLite for member and session management. Admin dashboard for activation codes and network monitoring.</p>
+            <h3 class="proj-title" data-en="Wi-Fi Auto-Connection & Network Access Control" data-fr="Autoconnexion Wi-Fi & Contrôle d'Accès Réseau">Wi-Fi Auto-Connection & Network Access Control</h3>
+            <p class="proj-desc" data-en="Captive portal with MAC-based access control for a coworking space. Node.js backend with SQLite for member and session management. Admin dashboard for activation codes and network monitoring." data-fr="Portail captif avec contrôle d'accès MAC. Backend Node.js avec SQLite. Tableau de bord admin pour les codes d'activation et le suivi réseau.">Captive portal with MAC-based access control for a coworking space. Node.js backend with SQLite. Admin dashboard for activation codes and network monitoring.</p>
             <div class="proj-tags"><span class="ptag">Node.js</span><span class="ptag">SQLite</span><span class="ptag">Captive Portal</span><span class="ptag">MAC Auth</span><span class="ptag">Network Security</span></div>
-            <div class="proj-links"><a href="https://github.com/SalmaBoulhana" class="plink gh" target="_blank">⬡ GitHub</a></div>
+            <div class="proj-links"><a href="https://github.com/SalmaBoulhana" class="plink" target="_blank">⬡ GitHub</a></div>
           </div>
         </div>
-
         <div class="proj-card reveal">
           <div class="proj-img"><div class="proj-ph"><span class="pico">⚙️</span><span data-en="In Progress..." data-fr="En cours...">In Progress...</span></div></div>
           <div>
-            <p class="proj-type" data-en="PFA — Final Year Project · In Progress" data-fr="PFA — Projet de Fin d'Années · En cours">PFA — Final Year Project · In Progress</p>
+            <p class="proj-type" data-en="PFA — Final Year Project · In Progress" data-fr="PFA — Projet Fin d'Année · En cours">PFA — Final Year Project · In Progress</p>
             <h3 class="proj-title">Smart SIEM</h3>
             <p class="proj-desc" data-en="Study and implementation of an intelligent SIEM system. More details coming soon." data-fr="Étude et mise en place d'un SIEM intelligent. Plus de détails bientôt.">Study and implementation of an intelligent SIEM system. More details coming soon.</p>
             <div class="wip-tag" data-en="⚙ Work In Progress" data-fr="⚙ En Cours">⚙ Work In Progress</div>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- RESUME -->
   <section id="resume">
     <div class="sec-inner">
       <div class="reveal">
         <p class="sec-tag" data-en="My Journey" data-fr="Mon Parcours">My Journey</p>
-        <h2 class="sec-title" data-en="Resume & <span>CV</span>" data-fr="CV & <span>Parcours</span>">Resume &amp; <span>CV</span></h2>
+        <h2 class="sec-title" data-en="Resume &amp; <span>CV</span>" data-fr="CV &amp; <span>Parcours</span>">Resume &amp; <span>CV</span></h2>
         <div class="sec-div"></div>
       </div>
       <div class="resume-grid reveal">
         <div>
           <p class="rc-title" data-en="Education" data-fr="Formation">Education</p>
           <div class="ri">
-            <p class="ri-title" data-en="Classe Préparatoire (CPGE)" data-fr="Classe Préparatoire (CPGE)">Classe Préparatoire (CPGE)</p>
-            <p class="ri-meta" data-en="Maths & Physics · Until 2024" data-fr="Maths & Physique · Jusqu'en 2024">Maths &amp; Physics · Until 2024</p>
-            <p class="ri-desc" data-en="Intensive preparatory classes in mathematics and physics before engineering school." data-fr="Classes préparatoires intensives en mathématiques et physique avant l'école d'ingénieurs.">Intensive preparatory classes in mathematics and physics before engineering school.</p>
+            <p class="ri-title">Classe Préparatoire (CPGE)</p>
+            <p class="ri-meta" data-en="Maths & Physics · Until 2024" data-fr="Maths & Physique · Jusqu'en 2024">Maths & Physics · Until 2024</p>
+            <p class="ri-desc" data-en="Intensive preparatory classes in mathematics and physics before engineering school." data-fr="Classes préparatoires intensives en mathématiques et physique.">Intensive preparatory classes in mathematics and physics before engineering school.</p>
           </div>
           <div class="ri">
             <p class="ri-title" data-en="Engineering in Cybersecurity" data-fr="Ingénierie en Cybersécurité">Engineering in Cybersecurity</p>
             <p class="ri-meta">ENSIAS · Mohammed V University · 2024 – 2027</p>
-            <p class="ri-desc" data-en="Specializing in cybersecurity with focus on blue team operations, SOC analysis, network security, and threat intelligence." data-fr="Spécialisation en cybersécurité axée sur les opérations Blue Team, l'analyse SOC, la sécurité réseau et la threat intelligence.">Specializing in cybersecurity with focus on blue team operations, SOC analysis, network security, and threat intelligence.</p>
+            <p class="ri-desc" data-en="Specializing in cybersecurity with focus on blue team operations, SOC analysis, network security, and threat intelligence." data-fr="Spécialisation en cybersécurité axée sur les opérations Blue Team, l'analyse SOC et la threat intelligence.">Specializing in cybersecurity with focus on blue team operations, SOC analysis, and threat intelligence.</p>
           </div>
         </div>
         <div>
           <p class="rc-title" data-en="Experience" data-fr="Expérience">Experience</p>
           <div class="ri">
-            <p class="ri-title" data-en="Network Security & Wi-Fi Auth Intern" data-fr="Stagiaire Sécurité Réseau & Auth Wi-Fi">Network Security &amp; Wi-Fi Auth Intern</p>
+            <p class="ri-title" data-en="Network Security & Wi-Fi Auth Intern" data-fr="Stagiaire Sécurité Réseau & Auth Wi-Fi">Network Security & Wi-Fi Auth Intern</p>
             <p class="ri-meta">Architeo · Rabat · Sept – Dec 2024</p>
-            <p class="ri-desc" data-en="Designed captive portal with MAC-based access control, Node.js backend, and admin dashboard for a coworking space." data-fr="Conception d'un portail captif avec contrôle d'accès MAC, backend Node.js et tableau de bord admin.">Designed captive portal with MAC-based access control, Node.js backend, and admin dashboard for a coworking space.</p>
+            <p class="ri-desc" data-en="Designed captive portal with MAC-based access control, Node.js backend, and admin dashboard for a coworking space." data-fr="Conception d'un portail captif avec contrôle d'accès MAC, backend Node.js et tableau de bord admin.">Designed captive portal with MAC-based access control, Node.js backend, and admin dashboard.</p>
           </div>
           <div class="ri">
             <p class="ri-title">Smart SIEM — PFA</p>
@@ -482,19 +392,18 @@
       <div class="resume-dl reveal">
         <a href="Salma_Boulhana_CV.pdf" class="btn-dl" download>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-          <span data-en="Download Full CV (PDF)" data-fr="Télécharger le CV Complet (PDF)">Download Full CV (PDF)</span>
+          <span data-en="Download Full CV (PDF)" data-fr="Télécharger le CV (PDF)">Download Full CV (PDF)</span>
         </a>
-        <p class="dl-note" data-en="Upload 'Salma_Boulhana_CV.pdf' to your GitHub repo to activate this button" data-fr="Uploadez 'Salma_Boulhana_CV.pdf' dans votre repo GitHub pour activer ce bouton">Upload 'Salma_Boulhana_CV.pdf' to your GitHub repo to activate this button</p>
+        <p class="dl-note" data-en="Upload 'Salma_Boulhana_CV.pdf' to your GitHub repo to activate" data-fr="Uploadez le PDF dans votre repo GitHub pour activer">Upload 'Salma_Boulhana_CV.pdf' to your GitHub repo to activate</p>
       </div>
     </div>
   </section>
 
-  <!-- BLOG -->
   <section id="blog">
     <div class="sec-inner">
       <div class="reveal">
-        <p class="sec-tag" data-en="Thoughts & Write-ups" data-fr="Articles & Write-ups">Thoughts &amp; Write-ups</p>
-        <h2 class="sec-title" data-en="Blog & <span>Articles</span>" data-fr="Blog & <span>Articles</span>">Blog &amp; <span>Articles</span></h2>
+        <p class="sec-tag" data-en="Thoughts & Write-ups" data-fr="Articles & Write-ups">Thoughts & Write-ups</p>
+        <h2 class="sec-title" data-en="Blog &amp; <span>Articles</span>" data-fr="Blog &amp; <span>Articles</span>">Blog &amp; <span>Articles</span></h2>
         <div class="sec-div"></div>
       </div>
       <div class="blog-ph reveal">
@@ -505,7 +414,6 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact">
     <div class="sec-inner">
       <div class="reveal">
@@ -515,7 +423,7 @@
       </div>
       <div class="contact-grid reveal">
         <div>
-          <p class="contact-desc" data-en="I'm always open to discussing cybersecurity opportunities, academic collaborations, or connecting with fellow security enthusiasts. Feel free to reach out!" data-fr="Je suis toujours ouverte aux opportunités en cybersécurité, collaborations académiques ou simplement pour échanger. N'hésitez pas à me contacter !">I'm always open to discussing cybersecurity opportunities, academic collaborations, or connecting with fellow security enthusiasts. Feel free to reach out!</p>
+          <p class="contact-desc" data-en="I'm always open to discussing cybersecurity opportunities, academic collaborations, or connecting with fellow security enthusiasts." data-fr="Je suis toujours ouverte aux opportunités en cybersécurité, collaborations académiques ou simplement pour échanger.">I'm always open to discussing cybersecurity opportunities, academic collaborations, or connecting with fellow security enthusiasts.</p>
           <div class="slinks">
             <a href="https://github.com/SalmaBoulhana" class="slink" target="_blank">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
@@ -525,9 +433,9 @@
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
               Salma Boulhana — LinkedIn
             </a>
-            <a href="/cdn-cgi/l/email-protection#22404d574e4a434c4351434e4f434450131062454f434b4e0c414d4f" class="slink">
+            <a href="mailto:boulhanasalmafr12@gmail.com" class="slink">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-              <span class="__cf_email__" data-cfemail="c8aaa7bda4a0a9a6a9bba9a4a5a9aebaf9fa88afa5a9a1a4e6aba7a5">[email&#160;protected]</span>
+              boulhanasalmafr12@gmail.com
             </a>
           </div>
         </div>
@@ -541,102 +449,59 @@
             <div class="fg"><label data-en="Message" data-fr="Message">Message</label><textarea rows="5" placeholder="Your message..." required></textarea></div>
             <p class="form-note" data-en="* Your phone number is kept private." data-fr="* Votre numéro de téléphone reste privé.">* Your phone number is kept private.</p>
             <button type="submit" class="btn-send" data-en="Send Message" data-fr="Envoyer">Send Message</button>
-            <p id="form-ok" data-en="✓ Message sent! I'll be in touch soon." data-fr="✓ Message envoyé ! Je vous répondrai bientôt.">✓ Message sent! I'll be in touch soon.</p>
+            <p id="form-ok" data-en="✓ Message sent! I'll be in touch soon." data-fr="✓ Message envoyé !">✓ Message sent!</p>
           </form>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <p class="footer-copy">© 2025 Salma Boulhana</p>
-    <div class="footer-logo">
-      <img src="logo.png" alt="SB" onerror="this.style.display='none';document.getElementById('footerFb').style.display='block'"/>
+    <div>
+      <img src="logo.png" alt="SB" height="26" onerror="this.style.display='none';document.getElementById('footerFb').style.display='block'"/>
       <span id="footerFb" class="footer-logo-fb" style="display:none">SB<span>.</span></span>
     </div>
     <p class="footer-copy" data-en="Built with ♥ · GitHub Pages" data-fr="Fait avec ♥ · GitHub Pages">Built with ♥ · GitHub Pages</p>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-    // ── Particles ──
+  <script>
     const canvas = document.getElementById('particles-canvas');
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth; canvas.height = window.innerHeight;
     window.addEventListener('resize', () => { canvas.width=window.innerWidth; canvas.height=window.innerHeight; });
-
     let mouse = { x: canvas.width/2, y: canvas.height/2 };
-    const pts = Array.from({length:80}, () => ({
-      x: Math.random()*canvas.width, y: Math.random()*canvas.height,
-      vx: (Math.random()-0.5)*0.45, vy: (Math.random()-0.5)*0.45,
-      r: Math.random()*2+1
-    }));
-
+    const pts = Array.from({length:75}, () => ({ x:Math.random()*canvas.width, y:Math.random()*canvas.height, vx:(Math.random()-0.5)*0.45, vy:(Math.random()-0.5)*0.45, r:Math.random()*2+1 }));
     document.addEventListener('mousemove', e => {
       mouse.x=e.clientX; mouse.y=e.clientY;
-      pts.forEach(p => {
-        const dx=e.clientX-p.x, dy=e.clientY-p.y;
-        const d=Math.sqrt(dx*dx+dy*dy);
-        if(d<160){ p.vx+=dx/d*0.07; p.vy+=dy/d*0.07; }
-      });
+      pts.forEach(p => { const dx=e.clientX-p.x,dy=e.clientY-p.y,d=Math.sqrt(dx*dx+dy*dy); if(d<160){p.vx+=dx/d*0.07;p.vy+=dy/d*0.07;} });
     });
-
     function drawParticles(){
       ctx.clearRect(0,0,canvas.width,canvas.height);
-      for(let i=0;i<pts.length;i++){
-        for(let j=i+1;j<pts.length;j++){
-          const d=Math.hypot(pts[i].x-pts[j].x,pts[i].y-pts[j].y);
-          if(d<110){
-            ctx.beginPath(); ctx.moveTo(pts[i].x,pts[i].y); ctx.lineTo(pts[j].x,pts[j].y);
-            ctx.strokeStyle=`rgba(255,244,228,${0.18*(1-d/110)})`; ctx.lineWidth=0.5; ctx.stroke();
-          }
-        }
+      for(let i=0;i<pts.length;i++) for(let j=i+1;j<pts.length;j++){
+        const d=Math.hypot(pts[i].x-pts[j].x,pts[i].y-pts[j].y);
+        if(d<110){ ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle=`rgba(255,244,228,${0.2*(1-d/110)})`;ctx.lineWidth=0.5;ctx.stroke(); }
       }
       pts.forEach(p => {
-        p.vx*=0.97; p.vy*=0.97; p.x+=p.vx; p.y+=p.vy;
-        if(p.x<0||p.x>canvas.width) p.vx*=-1;
-        if(p.y<0||p.y>canvas.height) p.vy*=-1;
-        ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-        ctx.fillStyle='rgba(255,244,228,0.4)'; ctx.fill();
+        p.vx*=0.97;p.vy*=0.97;p.x+=p.vx;p.y+=p.vy;
+        if(p.x<0||p.x>canvas.width)p.vx*=-1; if(p.y<0||p.y>canvas.height)p.vy*=-1;
+        ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(255,244,228,0.4)';ctx.fill();
       });
       const g=ctx.createRadialGradient(mouse.x,mouse.y,0,mouse.x,mouse.y,180);
-      g.addColorStop(0,'rgba(104,25,30,0.2)'); g.addColorStop(1,'transparent');
-      ctx.fillStyle=g; ctx.fillRect(0,0,canvas.width,canvas.height);
+      g.addColorStop(0,'rgba(104,25,30,0.2)');g.addColorStop(1,'transparent');
+      ctx.fillStyle=g;ctx.fillRect(0,0,canvas.width,canvas.height);
       requestAnimationFrame(drawParticles);
     }
     drawParticles();
-
-    // ── Typing animation ──
-    const typedEl = document.getElementById('typed');
-    const phrases = {
-      en: ['A Cybersecurity Student','Blue Team & SOC Enthusiast','Threat Detection Analyst','Log Analysis & Threat Intel'],
-      fr: ['Étudiante en Cybersécurité','Passionnée Blue Team & SOC','Analyste en Détection de Menaces','Analyse de Logs & Threat Intel']
-    };
-    let pi=0, ci=0, del=false, currentLang='en';
-    function type(){
-      const list=phrases[currentLang];
-      const cur=list[pi];
-      if(!del){ typedEl.textContent=cur.slice(0,ci+1); ci++; if(ci===cur.length){del=true;setTimeout(type,2000);return;} setTimeout(type,65); }
-      else { typedEl.textContent=cur.slice(0,ci-1); ci--; if(ci===0){del=false;pi=(pi+1)%list.length;setTimeout(type,400);return;} setTimeout(type,35); }
-    }
+    const typedEl=document.getElementById('typed');
+    const phrases={en:['A Cybersecurity Student','Blue Team & SOC Enthusiast','Threat Detection Analyst','Log Analysis & Threat Intel'],fr:['Étudiante en Cybersécurité','Passionnée Blue Team & SOC','Analyste en Détection de Menaces','Analyse de Logs & Threat Intel']};
+    let pi=0,ci=0,del=false,currentLang='en';
+    function type(){ const list=phrases[currentLang],cur=list[pi]; if(!del){typedEl.textContent=cur.slice(0,ci+1);ci++;if(ci===cur.length){del=true;setTimeout(type,2000);return;}setTimeout(type,65);}else{typedEl.textContent=cur.slice(0,ci-1);ci--;if(ci===0){del=false;pi=(pi+1)%list.length;setTimeout(type,400);return;}setTimeout(type,35);} }
     setTimeout(type,1400);
-
-    // ── Scroll reveal ──
-    const obs=new IntersectionObserver(entries=>{
-      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
-    },{threshold:0.08});
+    const obs=new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting)e.target.classList.add('visible'); }); },{threshold:0.08});
     document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
-
-    // ── Contact form ──
-    function handleForm(e){
-      e.preventDefault();
-      const ok=document.getElementById('form-ok');
-      ok.style.display='block'; e.target.reset();
-      setTimeout(()=>ok.style.display='none',4000);
-    }
-
-    // ── Lang toggle ──
-    function setLang(l){
-      currentLang=l;
-      document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
-    
+    function handleForm(e){ e.preventDefault(); const ok=document.getElementById('form-ok'); ok.style.display='block'; e.target.reset(); setTimeout(()=>ok.style.display='none',4000); }
+    function setLang(l){ currentLang=l; document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active')); document.querySelector(`.lang-btn[onclick="setLang('${l}')"]`).classList.add('active'); document.querySelectorAll('[data-en]').forEach(el=>{ const t=el.getAttribute('data-'+l); if(t)el.innerHTML=t; }); }
+  </script>
+</body>
+</html>
