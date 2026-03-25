@@ -123,7 +123,7 @@
     .blog-icon { font-size:2.5rem; margin-bottom:1rem; opacity:0.4; }
     .blog-coming { font-family:'Syne',sans-serif; font-size:1.5rem; font-weight:700; color:var(--snow); margin-bottom:0.8rem; }
     .blog-ph p { font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--mist); line-height:1.8; }
-    #contact { background:var(--bg); }
+        #contact { background:var(--bg); }
     .contact-grid { display:grid; grid-template-columns:1fr 1.2fr; gap:5rem; }
     .contact-desc { font-size:0.95rem; line-height:1.85; color:var(--mist); margin-bottom:2rem; }
     .slinks { display:flex; flex-direction:column; gap:0.8rem; }
@@ -140,6 +140,46 @@
     .btn-send { background:var(--berry); color:var(--snow); border:none; padding:0.9rem 2.5rem; font-family:'DM Mono',monospace; font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; align-self:flex-start; transition:all 0.2s; }
     .btn-send:hover { background:var(--berry2); transform:translateY(-2px); }
     #form-ok { display:none; font-family:'DM Mono',monospace; font-size:0.7rem; color:var(--berry); margin-top:0.5rem; }
+    
+    /* blog styles */
+    .blog-link {
+      display: block;
+      text-decoration: none;
+    }
+    .blog-card {
+      border: 1px solid rgba(104, 25, 30, 0.4);
+      padding: 3rem 2rem;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .blog-card:hover {
+      border-color: var(--berry);
+      transform: translateY(-4px);
+    }
+    .blog-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .blog-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--snow);
+      margin-bottom: 0.8rem;
+    }
+    .blog-card p {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--mist);
+      line-height: 1.8;
+    }
+    .blog-arrow {
+      margin-top: 1rem;
+      display: inline-block;
+      color: var(--berry);
+      font-size: 1.2rem;
+    }
+    
     footer { background:var(--bg2); padding:2rem 3rem; display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(104,25,30,0.2); }
     .footer-copy { font-family:'DM Mono',monospace; font-size:0.62rem; color:var(--mist); opacity:0.5; }
     .footer-logo-fb { font-family:'Syne',sans-serif; font-size:1.1rem; font-weight:800; color:var(--snow); }
@@ -393,7 +433,6 @@
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
           <span data-en="Download Full CV (PDF)" data-fr="Télécharger le CV (PDF)">Download Full CV (PDF)</span>
         </a>
-        <p class="dl-note" data-en="Upload 'Salma_Boulhana_CV.pdf' to your GitHub repo to activate" data-fr="                                 ">Upload 'Salma_Boulhana_CV.pdf' to your GitHub repo to activate</p>
       </div>
     </div>
   </section>
@@ -405,11 +444,14 @@
         <h2 class="sec-title" data-en="Blog &amp; <span>Articles</span>" data-fr="Blog &amp; <span>Articles</span>">Blog &amp; <span>Articles</span></h2>
         <div class="sec-div"></div>
       </div>
-      <div class="blog-ph reveal">
-        <div class="blog-icon">✍️</div>
-        <p class="blog-coming" data-en="Coming Soon" data-fr="Bientôt Disponible">Coming Soon</p>
-        <p data-en="Security write-ups, CTF walkthroughs, and SOC insights on their way." data-fr="Des write-ups sécurité, walkthroughs CTF et analyses SOC arrivent bientôt.">Security write-ups, CTF walkthroughs, and SOC insights on their way.</p>
-      </div>
+      <a href="https://blogsiem.netlify.app/" class="blog-link" target="_blank">
+        <div class="blog-card">
+          <div class="blog-icon">📝</div>
+          <p class="blog-title">SIEM Blog</p>
+          <p data-en="Read my articles about SIEM, security operations, and threat detection" data-fr="Lisez mes articles sur SIEM, les opérations de sécurité et la détection des menaces">Read my articles about SIEM, security operations, and threat detection</p>
+          <span class="blog-arrow">→</span>
+        </div>
+      </a>
     </div>
   </section>
 
